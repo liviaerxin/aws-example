@@ -46,6 +46,8 @@ public class GetObject {
       
         try {
             S3Object o = s3.getObject(bucket_name, key_name);
+            String filename = key_name.replaceAll(".*/", "");
+            System.out.println("filename:" + filename);
             S3ObjectInputStream s3is = o.getObjectContent();
             FileOutputStream fos = new FileOutputStream(new File("/tmp", key_name));
             byte[] read_buf = new byte[1024];
