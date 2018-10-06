@@ -35,9 +35,11 @@ public class GetObject {
 
         System.out.format("Downloading %s from S3 bucket %s...\n", key_name, bucket_name);
         
-        AWSCredentials credentials = new BasicAWSCredentials(
-				  "AKIAJP4O7IMPNHRWNUWQ", 
-				  "PsWiedH71JW/BYXUUYBxPemUY4N6QFtcNOv7ITfj"
+		String accessKey = System.getenv("AWS_ACCESS_KEY_ID");
+		String secretKey = System.getenv("AWS_SECRET_ACCESS_KEY");
+		AWSCredentials credentials = new BasicAWSCredentials(
+				accessKey, 
+				secretKey
 				);
         AmazonS3 s3 = AmazonS3ClientBuilder.standard()
       		.withCredentials(new AWSStaticCredentialsProvider(credentials))

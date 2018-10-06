@@ -13,9 +13,21 @@ import com.amazonaws.services.s3.model.Bucket;
 public class ListBuckets {
 	public static void main(String[] args)
     {
+		String accessKey = System.getenv("AWS_ACCESS_KEY_ID");
+		String secretKey = System.getenv("AWS_SECRET_ACCESS_KEY");
+		if (accessKey == null) {
+			System.out.println("accessKey can't be null");
+			System.exit(1);
+		}
+		if (secretKey == null) {
+			System.out.println("secretKey can't be null");
+			System.exit(1);
+		}
+		System.out.println("accessKey is:" + accessKey);
+		System.out.println("secretKey is:" + secretKey);
 		AWSCredentials credentials = new BasicAWSCredentials(
-				  "AKIAJP4O7IMPNHRWNUWQ", 
-				  "PsWiedH71JW/BYXUUYBxPemUY4N6QFtcNOv7ITfj"
+				accessKey, 
+				secretKey
 				);
         AmazonS3 s3 = AmazonS3ClientBuilder.standard()
         		.withCredentials(new AWSStaticCredentialsProvider(credentials))
